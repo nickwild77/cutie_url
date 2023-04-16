@@ -1,0 +1,51 @@
+{#<!DOCTYPE html>#}
+{#<html lang="eng">#}
+{#  <head>#}
+{#    <title>{% block title %}{% endblock %}</title>#}
+{#  </head>#}
+{#  <body>#}
+{#    <div class="container">#}
+{#      {% block content %}{% endblock %}#}
+{#    </div>#}
+{#  </body>#}
+{#</html>#}
+
+{#<!DOCTYPE html>#}
+{#<html lang="en">#}
+{#<head>#}
+{#    <title>{% block title %} {% endblock %}</title>#}
+{#</head>#}
+{#<body>#}
+{#<div>#}
+{#    <nav>#}
+{#        <ul>#}
+{#            <li><a href="{% url 'url-create' %}">Create Short URL</a></li>#}
+{#        </ul>#}
+{#    </nav>#}
+{#    {% block content %}#}
+{#    {% endblock %}#}
+{#</div>#}
+{#</body>#}
+{#</html>#}
+
+<!-- base.html -->
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <title>{% block title %}URL Shortener{% endblock %}</title>
+</head>
+<body>
+<nav>
+    <ul>
+        <li><a href="{% url 'home' %}">Home</a></li>
+        <li><a href="{% url 'url_create' %}">Create Short URL</a></li>
+    </ul>
+</nav>
+<div class="container">
+    {% block content %}
+    {% endblock %}
+</div>
+</body>
+</html>
