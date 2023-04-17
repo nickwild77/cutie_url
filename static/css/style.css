@@ -1,101 +1,52 @@
-/* General styles */
-body {
-    font-family: Arial, sans-serif;
-    font-size: 16px;
-    color: #333;
-    margin: 0;
-    padding: 0;
+/* styles.css */
+
+/* Center the content vertically and horizontally */
+.container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
 }
 
-a {
-    color: #007bff;
-    text-decoration: none;
-}
-
-/* Header */
-header {
-    background-color: #007bff;
-    color: #fff;
-    padding: 1rem;
-}
-
-header h1 {
-    font-size: 2rem;
-    margin: 0;
-}
-
-/* Navigation */
-nav {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background-color: #f7f7f7;
-    padding: 1rem;
-}
-
-nav ul {
-    list-style: none;
-    margin: 0;
-    padding: 0;
-    display: flex;
-}
-
-nav li {
-    margin-left: 1rem;
-}
-
-/* Forms */
+/* Style the form */
 form {
-    margin: 1rem 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  box-shadow: 0px 0px 10px #ddd;
 }
 
-form label {
-    display: block;
-    font-weight: bold;
-    margin-bottom: 0.5rem;
+input[type="text"] {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 10px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
 }
 
-form input[type="text"], form input[type="url"] {
-    padding: 0.5rem;
-    font-size: 1rem;
-    border: 1px solid #ccc;
-    border-radius: 0.25rem;
-    width: 100%;
-    box-sizing: border-box;
-    margin-bottom: 1rem;
+input[type="submit"] {
+  width: 100%;
+  padding: 10px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: all 0.3s ease;
 }
 
-form input[type="submit"] {
-    background-color: #007bff;
-    color: #fff;
-    border: none;
-    border-radius: 0.25rem;
-    padding: 0.5rem 1rem;
-    font-size: 1rem;
-    cursor: pointer;
+input[type="submit"]:hover {
+  background-color: #0056b3;
 }
 
-/* Table */
-table {
-    border-collapse: collapse;
-    width: 100%;
-    margin-bottom: 1rem;
-}
-
-table th, table td {
-    border: 1px solid #ccc;
-    padding: 0.5rem;
-    text-align: left;
-}
-
-table th {
-    background-color: #f7f7f7;
-}
-
-/* Footer */
-footer {
-    background-color: #f7f7f7;
-    color: #333;
-    padding: 1rem;
-    text-align: center;
+/* Style the short URL */
+.short-url {
+  margin-top: 20px;
+  font-size: 24px;
+  font-weight: bold;
+  color: #007bff;
 }

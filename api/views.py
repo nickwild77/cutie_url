@@ -1,12 +1,8 @@
 import hashlib
 
-from django.http import HttpResponseRedirect
-from django.shortcuts import get_object_or_404, redirect
-from django.views.generic import TemplateView
 from rest_framework import status
-from rest_framework.generics import CreateAPIView
 from rest_framework.response import Response
-from rest_framework.views import APIView
+from rest_framework.viewsets import ModelViewSet
 
 from .models import URL
 from .serializers import URLSerializer
@@ -15,11 +11,8 @@ import redis
 r = redis.Redis(host='localhost', port=6379, db=0)
 
 
-class HomeView(TemplateView):
-    template_name = 'home.html'
-
-
-class URLCreateView(CreateAPIView):
+class URLViewSet(ModelViewSet):
+    queryset = URL.objects.all()
     serializer_class = URLSerializer
 
     def create(self, request, *args, **kwargs):
@@ -50,26 +43,15 @@ class URLCreateView(CreateAPIView):
             serializer = URLSerializer(url)
             return Response(serializer.data)
 
-
-class URLRedirectView(APIView):
-    @staticmethod
-    def get(request, short_url):
-        url = get_object_or_404(URL, short_url=short_url)
+    def retrieve(self, request, *args, **kwargs):
+        url = self.get_object()
         url.clicked()
         return Response({'url': url.long_url}, status=status.HTTP_302_FOUND)
 
-
-class URLListView(APIView):
-    @staticmethod
-    def get(request):
-        urls = URL.objects.all()
-        serializer = URLSerializer(urls, many=True)
+    def list(self, request, *args, **kwargs):
+        queryset = self.filter_queryset(self.get_queryset())
+        serializer = URLSerializer(queryset, many=True)
         return Response(serializer.data)
 
-    @staticmethod
-    def post(request):
-        serializer = URLSerializer(data=request.data)
-        if serializer.is_valid():
-            serializer.save()
-            return Response(serializer.data, status=status.HTTP_201_CREATED)
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+    def perform_create(self, serializer):
+        serializer.save()

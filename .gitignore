@@ -63,6 +63,7 @@ cover/
 local_settings.py
 db.sqlite3
 db.sqlite3-journal
+dump.rdb
 
 # Flask stuff:
 instance/
@@ -151,3 +152,46 @@ dmypy.json
 
 # Cython debug symbols
 cython_debug/
+
+# Node.js / NPM
+node_modules/
+
+# Build artifacts
+*.min.js
+*.min.css
+
+# Temporary files
+logs/
+cache/
+tmp/
+
+# Configuration files with sensitive information
+config.js
+config.json
+.env.local
+.env.development
+.env.production
+
+# IDE-specific files
+.idea/
+.vscode/
+*.code-workspace
+*.sublime-project
+*.sublime-workspace
+
+# Miscellaneous
+.DS_Store
+Thumbs.db
+
+# Uncomment the following lines if using TypeScript
+#*.tsbuildinfo
+#*.ts
+
+# Uncomment the following lines if using Sass
+#*.sassc
+#*.css.map
+
+# Uncomment the following lines if using Webpack
+#*.webpack-*
+#*.hot-update.js
+#*.hot-update.json
