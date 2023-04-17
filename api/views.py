@@ -1,13 +1,7 @@
 import hashlib
 
-from django.urls import reverse
-from django.http import HttpResponseRedirect
-from django.shortcuts import get_object_or_404, redirect, render
-from django.views.generic import TemplateView
 from rest_framework import status
-from rest_framework.generics import CreateAPIView, GenericAPIView
 from rest_framework.response import Response
-from rest_framework.views import APIView
 from rest_framework.viewsets import ModelViewSet
 
 from .models import URL
@@ -15,16 +9,6 @@ from .serializers import URLSerializer
 import redis
 
 r = redis.Redis(host='localhost', port=6379, db=0)
-
-
-# class HomeView(APIView):
-#     @staticmethod
-#     def get(request):
-#         context = {
-#             'create_url': reverse('url-create'),
-#             'redirect_url': reverse('url-redirect', args=['SHORT_URL']),
-#         }
-#         return Response(context, status=status.HTTP_200_OK)
 
 
 class URLViewSet(ModelViewSet):
@@ -71,27 +55,3 @@ class URLViewSet(ModelViewSet):
 
     def perform_create(self, serializer):
         serializer.save()
-
-
-class URLRedirectView(APIView):
-    @staticmethod
-    def get(request, short_url):
-        url = get_object_or_404(URL, short_url=short_url)
-        url.clicked()
-        return Response({'url': url.long_url}, status=status.HTTP_302_FOUND)
-
-
-class URLListView(APIView):
-    @staticmethod
-    def get(request):
-        urls = URL.objects.all()
-        serializer = URLSerializer(urls, many=True)
-        return Response(serializer.data)
-
-    @staticmethod
-    def post(request):
-        serializer = URLSerializer(data=request.data)
-        if serializer.is_valid():
-            serializer.save()
-            return Response(serializer.data, status=status.HTTP_201_CREATED)
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
