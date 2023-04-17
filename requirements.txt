@@ -1,13 +1,12 @@
 asgiref==3.6.0
-django-filter==23.1
 Django==4.2
+django-cors-headers==3.14.0
+django-filter==23.1
 djangorestframework==3.14.0
+djangorestframework-camel-case==1.4.2
 Markdown==3.4.3
-pip==23.0.1
 psycopg2==2.9.5
+python-decouple==3.8
 pytz==2023.2
 redis==4.5.3
-setuptools==57.0.0
 sqlparse==0.4.3
-wheel==0.36.2
-python-decouple==3.8
