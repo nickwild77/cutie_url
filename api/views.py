@@ -1,5 +1,6 @@
 import hashlib
 
+from django.shortcuts import redirect
 from rest_framework import status
 from rest_framework.response import Response
 from rest_framework.viewsets import ModelViewSet
@@ -46,7 +47,7 @@ class URLViewSet(ModelViewSet):
     def retrieve(self, request, *args, **kwargs):
         url = self.get_object()
         url.clicked()
-        return Response({'url': url.long_url}, status=status.HTTP_302_FOUND)
+        return Response(status=status.HTTP_302_FOUND, headers={'Location': url.long_url})
 
     def list(self, request, *args, **kwargs):
         queryset = self.filter_queryset(self.get_queryset())
